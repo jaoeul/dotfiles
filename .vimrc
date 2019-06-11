@@ -17,18 +17,17 @@ Plugin 'morhetz/gruvbox'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
-                                                        "General configurations
+"General configurations
 let g:ycm_server_python_interpreter = '/usr/bin/python3'
 let mapleader=","
-set number			                            "Numbering rows
-set relativenumber                              "Numbers are relative to the cursor
-highlight LineNr ctermfg=grey	                "Change number color
-set hidden			                            "Save changes to files closed in Vim while VIm is running
-set autoindent			                        "Save indentation when opening files
+set number "Numbering rows
+set relativenumber "Numbers are relative to the cursor
+highlight LineNr ctermfg=grey "Change number color
+set hidden "Save changes to files closed in Vim while VIm is running
+set autoindent "Save indentation when opening files
 set backspace=indent,eol,start
-set noeb vb t_vb= 		                        "Disable error sound 
-set directory^=$HOME/Vim/tmp//	                "Save swapfiles in this dir
+set noeb vb t_vb= "Disable error sound 
+set directory^=$HOME/Vim/tmp// "Save swapfiles in this dir
 syntax enable 
 colorscheme gruvbox
 set background=dark
@@ -37,14 +36,15 @@ set encoding=utf-8
 set tabstop=4
 set softtabstop=4
 set expandtab
-set wildmenu                                    "Show meny options whith TAB
+set wildmenu "Show meny options whith TAB
 set incsearch
-set showmatch                                   "Better search
-set foldenable
+set showmatch "Better search
+set foldenab l
 set completeopt-=preview
 set mouse=
 set noshowmode
-                                                        "General keybinds
+
+"General keybinds
 
 "Unmap the arrowkeys and mouse
 no <down> ddp 
