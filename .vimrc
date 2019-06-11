@@ -91,9 +91,6 @@ noremap <Leader>s :update<CR>
 "Toggle NERDTree with CTRL + n
 nnoremap <C-n> :NERDTreeToggle<CR>
 
-"Map q to b
-noremap q b
-
 "Exiting insert mode to not move cursor
 imap <Esc> <Esc>l
 imap <C-c> <C-c>l
