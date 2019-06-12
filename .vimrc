@@ -39,7 +39,7 @@ set expandtab
 set wildmenu "Show meny options whith TAB
 set incsearch
 set showmatch "Better search
-set foldenab l
+set foldenable
 set completeopt-=preview
 set mouse=
 set noshowmode
