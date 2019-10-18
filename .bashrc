@@ -108,3 +108,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+#Added by joel
+alias python=python3.7
+stty ixany
+alias tmux="tmux -2"
+
+cs() { cd "$@" && ls; }
