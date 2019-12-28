@@ -1,19 +1,3 @@
-" Start Vundle
-set nocompatible              
-filetype off                  
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'morhetz/gruvbox'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-" Stop vundle
-
-"colorscheme gruvbox
 set bg=dark
 set number
 set nowrap
