@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Avaliable sinks: ";
+pactl list short sinks
+
+echo "New sink: ";
+read chosenSink
+
+pactl list short sinks $1 | while read a; do
+	if [[ $a == $chosenSink* ]]; then
+		echo "Setting active sink to: ";
+		chosenSinkName=$(echo $a | cut -d " " -f 2);
+		echo $chosenSinkName;
+		pacmd set-default-sink $chosenSinkName
+	fi
+done
