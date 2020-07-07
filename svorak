@@ -5,6 +5,9 @@ xkb_symbols "svorak" {
 	key <LWIN> { [ Super_L                                           ] };
 	key <RWIN> { [ Super_R                                           ] };
 	key <LALT> { [ BackSpace                                         ] };
+	key <BKSP> { [ Alt_L                                             ] };
+	key <CAPS> { [ Escape                                            ] };
+	key <ESC>  { [ Caps_Lock                                         ] };
 	key <AE01> { [ 1,          none,       none,                none ] };
 	key <AE02> { [ 2,          none,       none,                none ] };
 	key <AE03> { [ 3,          none,       none,                none ] };
@@ -51,4 +54,5 @@ xkb_symbols "svorak" {
 	key <AB08> { [ w,          W,          lstroke,             none ] };
 	key <AB09> { [ v,          V,          leftdoublequotemark, none ] };
 	key <AB10> { [ z,          Z,          guillemotleft,       none ] };
+	key <CAPS> { [ backspace,  backspace,  none,                none ] };	
 };
