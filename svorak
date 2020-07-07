@@ -4,9 +4,9 @@ xkb_symbols "svorak" {
 
 	key <LWIN> { [ Super_L                                           ] };
 	key <RWIN> { [ Super_R                                           ] };
-	key <LALT> { [ BackSpace                                         ] };
+	key <LALT> { [ Escape                                            ] };
 	key <BKSP> { [ Alt_L                                             ] };
-	key <CAPS> { [ Escape                                            ] };
+	key <CAPS> { [ BackSpace                                         ] };
 	key <ESC>  { [ Caps_Lock                                         ] };
 	key <AE01> { [ 1,          none,       none,                none ] };
 	key <AE02> { [ 2,          none,       none,                none ] };
