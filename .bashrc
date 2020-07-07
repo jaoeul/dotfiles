@@ -112,17 +112,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# setxkbmap -option caps:escape
+# setxkbmap -option BackSpace:Alt_L
 setxkbmap svorak
-setxkbmap -option caps:swapescape
+xset r 66 # make caps(backspace) repeatable
 
-alias gdb="gdb -q"
-alias l="ls -lah"
-alias d="ls -lah"
-alias ducks='du -cksh * | sort -h'
-alias whichex="grep -r Exercise | grep -v Binary | sed 's/puts(\"//g;s/://g;s/program.c//g;s/pp//g' | cut -d ' ' -f 1-6 | sort -k3 -n"
-
+export PATH=/home/joel/bin:$PATH
 export PATH=/sbin:$PATH
 export PATH=/home/joel/.local/bin:$PATH
-export PATH=/home/joel/bin:$PATH
+export PATH=/usr/local/bin/:$PATH
 
-stty -ixon
+alias l="ls -lah"
+alias d="ls -lah"
+alias ducks="du -cksh | sort -h"
+alias gdb="gdb -q"
+alias newtor="echo -e 'AUTHENTICATE ""\r\nsignal NEWNYM\r\nQUIT' | nc 127.0.0.1 9051"
+alias whichex="grep -r Exercise | grep -v Binary | sed 's/puts(\"//g;s/://g;s/program.c//g;s/pp//g' | cut -d ' ' -f 1-6 | sort -k3 -n"
+alias dim="vim -u /home/joel/.vimrc-dvorak"
