@@ -112,6 +112,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# prompt
+source ~/.git-prompt.sh
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 )\n\$ '
+
+
 # setxkbmap -option caps:escape
 # setxkbmap -option BackSpace:Alt_L
 setxkbmap svorak
