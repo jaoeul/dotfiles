@@ -124,8 +124,17 @@ export PATH=/usr/local/bin/:$PATH
 
 alias l="ls -lah"
 alias d="ls -lah"
-alias ducks="du -cksh | sort -h"
+alias duck="du -ckh | sort -h"
 alias gdb="gdb -q"
 alias newtor="echo -e 'AUTHENTICATE ""\r\nsignal NEWNYM\r\nQUIT' | nc 127.0.0.1 9051"
 alias whichex="grep -r Exercise | grep -v Binary | sed 's/puts(\"//g;s/://g;s/program.c//g;s/pp//g' | cut -d ' ' -f 1-6 | sort -k3 -n"
 alias dim="vim -u /home/joel/.vimrc-dvorak"
+
+### MERGE BASH_HISTORY IN MULTIPLE TERMINAL
+# Avoid duplicates
+HISTCONTROL=ignoredups:erasedups
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
+
+# After each command, append to the history file and reread it
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
