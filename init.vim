@@ -1,48 +1,124 @@
-let mapleader = ","
+" Remap leader to spacebar
+let mapleader = "\<Space>"
 
-" Airline stuff
-let g:airline_theme='simple'
+"Plug
+call plug#begin()
 
-" General stuff
-set bg=dark
+Plug 'scrooloose/nerdtree'
+Plug 'rakr/vim-one'
+
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug '/app/vbuild/RHEL6-x86_64/fzf'
+"Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+" Trigger completions with Ctrl+SPC in insert mode
+"inoremap <C-Space> <C-x><C-u>
+
+" Add to runtime path
+set rtp+=/app/vbuild/RHEL6-x86_64/fzf/0.21.1/bin
+
+" Toggle linenumber with <leader>ln
 set number
-set nowrap
+nnoremap <leader>tln :set number!<CR>
+
+" Disable mouse support
+set mouse=""
+
+" Open virtically split windows to the right
+set splitright
+
+" Coloring
+set bg=dark
+colorscheme one
 syntax enable
-set clipboard=unnamedplus
-highlight LineNr ctermfg=gray 
+set cursorline
+highlight CursorLineNr term=bold cterm=NONE ctermfg=magenta ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
+highlight Pmenu ctermbg=gray guibg=gray
+highlight PmenuSel ctermbg=white guibg=gray
+highlight PmenuSbar ctermbg=darkgray guibg=gray
+highlight PmenuThumb ctermbg=lightgray guibg=gray
+
+" Don't wrap lines
+set nowrap
+
+" Collect all .swp files in a single dir
+set directory=$HOME/neovim/swapfiles//
+
+" Tabbing to space
+filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
-set noshowmode
-set t_Co=256
-map Q <Nop>
+set expandtab
+
+" Backspace
+set backspace=2
+
+" Show whitespaces and newlines
+"set list
+
+" Better search
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+
+" NERDTree
+" autocmd vimenter * NERDTree " Start NERDTree on vim startup
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd VimEnter * wincmd p " Focus on previsouly focused window
+autocmd BufEnter * lcd %:p:h " Set cwd to vim buffer place
+let g:NERDTreeDirArrows=0
+
+" Exiting
 command! Q :q
 command! W :w
+command! WQ :wq
+command! Qa :qa
+command! WQA :wqa
+command! Wq :wq
+command! Wqa :wqa
 
-" Press F8 to compile and run C file
-autocmd FileType c map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+" Ctags
+"set tags=./tags,tags;$HOME " Recurisve upwards search for tags file
+"map gd "zyiw:exe "tag ".@z.""<CR> " map gd to go to defenition
 
-" Press F8 to compile and run Python file
-autocmd FileType python map <F8> :w <CR> :!clear;python3 %<CR>
+" Textwidth
+set colorcolumn=121
+highlight ColorColumn ctermbg=darkmagenta
 
-" Press F8 to compile and run Dotnet Core App
-autocmd FileType cs map <F8> :w <CR> :!clear;dotnet run <CR>
+" Fuzzy search files without a plugin. Use tab to start searching
+set wildmenu
+nnoremap <leader>h :find $WS_ROOT/**/*
 
-" Autocomletion options
-set completeopt=longest,menuone,preview
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
+autocmd Syntax * syn match ExtraWhitespace /\s\+$/ containedin=ALL
 
-" Always keep an option selected
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" Syntax highlighting of typedefs
+autocmd Syntax * syn match Type display "\<[a-zA-Z][0-9a-zA-Z_]*_t\>"
+autocmd Syntax * syn match Type display "\<[a-zA-Z][0-9a-zA-Z_]*_f\>"
+autocmd Syntax * syn match Type display "\<[a-zA-Z][0-9a-zA-Z_]*_s\>"
 
-" open omni completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-            \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-" open user completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+" Buffer stuff!
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+" Show buffers
+nnoremap <leader>bb :buffers<CR>:b 
 
-" If you prefer the Omni-Completion tip window to close when a selection is
-" made, these lines close it on movement in insert mode or when leaving
-" insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
