@@ -8,16 +8,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'rakr/vim-one'
 
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug '/app/vbuild/RHEL6-x86_64/fzf'
 "Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
 " Trigger completions with Ctrl+SPC in insert mode
 "inoremap <C-Space> <C-x><C-u>
-
-" Add to runtime path
-set rtp+=/app/vbuild/RHEL6-x86_64/fzf/0.21.1/bin
 
 " Toggle linenumber with <leader>ln
 set number
