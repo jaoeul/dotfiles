@@ -8,12 +8,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'rakr/vim-one'
 
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug '/app/vbuild/RHEL6-x86_64/fzf'
 "Plug 'junegunn/fzf.vim'
-
+"
 call plug#end()
-
-" Trigger completions with Ctrl+SPC in insert mode
-"inoremap <C-Space> <C-x><C-u>
 
 " Toggle linenumber with <leader>ln
 set number
@@ -60,6 +58,18 @@ set ignorecase
 set smartcase
 set incsearch
 
+" Search for selected text, forwards or backwards
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gVzv:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R>=&ic?'\c':'\C'<CR><C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gVzv:call setreg('"', old_reg, old_regtype)<CR>
+
 " NERDTree
 " autocmd vimenter * NERDTree " Start NERDTree on vim startup
 map <leader>n :NERDTreeToggle<CR>
@@ -80,6 +90,36 @@ command! Wqa :wqa
 " Ctags
 "set tags=./tags,tags;$HOME " Recurisve upwards search for tags file
 "map gd "zyiw:exe "tag ".@z.""<CR> " map gd to go to defenition
+
+" Cscope
+" Recurisve upwards search for tags file
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose "
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+  endif
+endfunction
+au BufEnter /* call LoadCscope()
+
+"Find this definition
+nmap <leader>gd "zyiw:exe "cscope find g ".@z.""<CR>
+"Find functions calling this function
+nmap <leader>gr "zyiw:exe "cscope find c ".@z.""<CR>
+"Find functions called by this function
+nmap <leader>gc "zyiw:exe "cscope find d ".@z.""<CR>
+"Find this file
+nmap <leader>gf "zyiw:exe "cscope find f ".@z.""<CR>
+"Find files #including this file
+nmap <leader>gi "zyiw:exe "cscope find i ".@z.""<CR>
+"Find this C symbol
+nmap <leader>gs "zyiw:exe "cscope find s ".@z.""<CR>
+"Find assignments to
+nmap <leader>ga "zyiw:exe "cscope find a ".@z.""<CR>
 
 " Textwidth
 set colorcolumn=121
