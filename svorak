@@ -39,7 +39,7 @@ xkb_symbols "svorak" {
 	key <AC05> { [ i,          I,          bar,                 none ] };
 	key <AC06> { [ d,          D,          numbersign,          none ] };
 	key <AC07> { [ h,          H,          asciicircum,         none ] };
-	key <AC08> { [ t,          T,          numbersign,          none ] };
+	key <AC08> { [ t,          T,          KP_Enter,            none ] };
 	key <AC09> { [ n,          N,          quotedbl,            none ] };
 	key <AC10> { [ s,          S,          asciitilde,          none ] };
 	key <AC11> { [ minus,      underscore, grave,               none ] };
