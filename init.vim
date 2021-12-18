@@ -1,18 +1,6 @@
 " Remap leader to spacebar
 let mapleader = "\<Space>"
 
-"Plug
-call plug#begin()
-
-Plug 'scrooloose/nerdtree'
-Plug 'rakr/vim-one'
-
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug '/app/vbuild/RHEL6-x86_64/fzf'
-"Plug 'junegunn/fzf.vim'
-"
-call plug#end()
-
 " Toggle linenumber with <leader>ln
 set number
 nnoremap <leader>tln :set number!<CR>
@@ -72,13 +60,16 @@ vnoremap <silent> # :<C-U>
 
 " NERDTree
 " autocmd vimenter * NERDTree " Start NERDTree on vim startup
-map <leader>n :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd VimEnter * wincmd p " Focus on previsouly focused window
-autocmd BufEnter * lcd %:p:h " Set cwd to vim buffer place
-let g:NERDTreeDirArrows=0
+"map <leader>n :NERDTreeToggle<CR>
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd VimEnter * wincmd p " Focus on previsouly focused window
+"autocmd BufEnter * lcd %:p:h " Set cwd to vim buffer place
+"let g:NERDTreeDirArrows=0
 
-" Exiting
+" Explorer
+map <leader>n :Explore!<CR>
+
+" Exiting and saving
 command! Q :q
 command! W :w
 command! WQ :wq
@@ -123,7 +114,7 @@ nmap <leader>ga "zyiw:exe "cscope find a ".@z.""<CR>
 
 " Textwidth
 set colorcolumn=121
-highlight ColorColumn ctermbg=darkmagenta
+highlight ColorColumn ctermbg=magenta
 
 " Fuzzy search files without a plugin. Use tab to start searching
 set wildmenu
@@ -158,3 +149,8 @@ nmap <leader>h :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Compile & run code directly from VI
+" Rust
+autocmd FileType rust map <leader>rc :! cargo rustc -- -Awarnings<CR>
+autocmd FileType rust map <leader>re :! cargo run<CR>
