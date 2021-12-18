@@ -58,14 +58,6 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gVzv:call setreg('"', old_reg, old_regtype)<CR>
 
-" NERDTree
-" autocmd vimenter * NERDTree " Start NERDTree on vim startup
-"map <leader>n :NERDTreeToggle<CR>
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"autocmd VimEnter * wincmd p " Focus on previsouly focused window
-"autocmd BufEnter * lcd %:p:h " Set cwd to vim buffer place
-"let g:NERDTreeDirArrows=0
-
 " Explorer
 map <leader>n :Explore!<CR>
 
