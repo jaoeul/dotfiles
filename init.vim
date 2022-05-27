@@ -146,3 +146,7 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Rust
 autocmd FileType rust map <leader>rc :! cargo rustc -- -Awarnings<CR>
 autocmd FileType rust map <leader>re :! cargo run<CR>
+
+" Jump back and forth with CTRL + i/o
+nnoremap <leader>o <C-o>
+nnoremap <leader>i <C-i>
