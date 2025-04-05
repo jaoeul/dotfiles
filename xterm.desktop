@@ -1,0 +1,8 @@
+# copy this file to `~/.local/share/applications/xterm.desktop`
+
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=xterm
+Name=xterm
+Comment="Xterm terinal emulator"

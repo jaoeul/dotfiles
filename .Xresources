@@ -1,0 +1,3 @@
+xterm*font:     *-fixed-*-*-*-20-*
+XTerm*boldMode: false
+xterm*boldFont: fixed
